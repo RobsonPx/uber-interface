@@ -1,0 +1,12 @@
+{
+  "name": "uber-interface",
+  "displayName": "uber-interface",
+  "expo": {
+    "name": "uber-interface",
+    "slug": "uber-interface",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
