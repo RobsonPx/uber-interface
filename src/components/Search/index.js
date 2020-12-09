@@ -3,14 +3,16 @@ import { Platform } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
 export default class Search extends Component {
+  state = {
+    searchFocused: false
+  }
+
   render() {
+    const { onLocationSelected } = this.props
     return (
       <GooglePlacesAutocomplete 
         placeholder="Para onde ?"
-        // placeholderTextColor="#333"
-        onPress={(data, details) => {
-          console.log(data, details)
-        }}
+        onPress={onLocationSelected}
         onFail={(err) => console.log(err)}
         query={{
           key: 'AIzaSyAOuAzxT8Yh4mnxtI8WYU8BZgw2R8pPQgk',
@@ -18,8 +20,11 @@ export default class Search extends Component {
         }}
         textInputProps={{
           autoCapitalize: 'none',
-          autoCorrect: false
+          autoCorrect: false,
+          onFocus: () => { this.setState({ searchFocused: true }) },
+          onBlur: () => { this.setState({ searchFocused: false }) }
         }}
+        listViewDisplayed={this.state.searchFocused}
         fetchDetails
         enablePoweredByContainer={ false }
         styles={{
